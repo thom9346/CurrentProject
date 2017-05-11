@@ -1,6 +1,5 @@
 package LogicLayer;
 
-
 import DataLayer.UserCredentials;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+
+import java.awt.event.KeyEvent;
 
 /**
  * Created by Thomas on 06-05-2017.
@@ -17,37 +19,65 @@ import javafx.stage.Stage;
 public class Controller {
 
     @FXML
-   private TextField usernameInput, passwordInput;
+    private TextField usernameInput, passwordInput;
 
     @FXML
-   private  Button loginButton;
+    private  Button loginButton;
 
     @FXML
     private Label wrongPW;
 
 
-    public void login() {
-
-
-      String userName = usernameInput.getText();
-      String password = passwordInput.getText();
-
+    private boolean validateUser()
+    {
         UserCredentials userCredentials = new UserCredentials();
+        String userName = usernameInput.getText();
+        String password = passwordInput.getText();
 
-      if(userName.equals(userCredentials.getUserName()) && password.equals(userCredentials.getPassword())) {
-          Stage stage = (Stage) loginButton.getScene().getWindow();
-          stage.close();
 
-      openNewWindow();
+        if(userName.equals(userCredentials.getUserName()) && password.equals(userCredentials.getPassword()))
+            return true;
 
-      }
-      else{
+        return false;
+    }
 
-          wrongPW.setText("Wrong username/password");
-      }
+
+
+    public void login()
+    {
+
+
+        if(validateUser()) {
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.close();
+
+            openNewWindow();
+
+        }
+        else{
+
+            wrongPW.setText("Wrong username/password");
+        }
 
     }
-    private void openNewWindow(){
+
+    public void loginWithEnter()
+    {
+
+        passwordInput.setOnKeyReleased(e-> {
+            if(e.getCode() == KeyCode.ENTER && validateUser()) {
+                Stage stage = (Stage) loginButton.getScene().getWindow();
+                stage.close();
+                openNewWindow();
+            }
+            wrongPW.setText("Wrong username/password");
+        });
+
+
+    }
+
+    private void openNewWindow()
+    {
 
         try {
 
@@ -64,4 +94,5 @@ public class Controller {
             System.out.println("Cant load window");
         }
     }
+
 }
