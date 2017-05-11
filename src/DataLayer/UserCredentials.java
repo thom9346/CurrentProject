@@ -5,8 +5,8 @@ package DataLayer;
  */
 public class UserCredentials {
 
-    private String userName = "test";
-   private String password = "test1234";
+    private String userName = "root";
+   private String password = "root";
 
 
     public String getUserName() {

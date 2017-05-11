@@ -18,6 +18,8 @@ import java.awt.event.KeyEvent;
  */
 public class Controller {
 
+    private OpenNewWindow openNewWindow = new OpenNewWindow();
+
     @FXML
     private TextField usernameInput, passwordInput;
 
@@ -51,7 +53,7 @@ public class Controller {
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.close();
 
-            openNewWindow();
+            openNewWindow.newWindow("MainWindow.fxml");
 
         }
         else{
@@ -68,7 +70,7 @@ public class Controller {
             if(e.getCode() == KeyCode.ENTER && validateUser()) {
                 Stage stage = (Stage) loginButton.getScene().getWindow();
                 stage.close();
-                openNewWindow();
+                openNewWindow.newWindow("MainWindow.fxml");
             }
             wrongPW.setText("Wrong username/password");
         });
@@ -76,23 +78,5 @@ public class Controller {
 
     }
 
-    private void openNewWindow()
-    {
-
-        try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainWindow.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-
-            stage.setTitle("Second window");
-            stage.setScene(new Scene(root1));
-            stage.show();
-
-
-        }catch (Exception e) {
-            System.out.println("Cant load window");
-        }
-    }
 
 }
