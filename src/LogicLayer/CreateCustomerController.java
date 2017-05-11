@@ -14,7 +14,7 @@ public class CreateCustomerController {
     @FXML
     private TextField faknr1, dato1, kundenr1, debitor1, navn1, adresse1, beløb1;
 
-    private String fakture = faknr1.getText();
+    //private String fakture = faknr1.getText();
 //    private String dato = dato1.getText();
 //    private String kundenr = kundenr1.getText();
 //    private String debitor = debitor1.getText();
