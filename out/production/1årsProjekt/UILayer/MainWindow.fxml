@@ -14,7 +14,7 @@
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Region prefHeight="368.0" prefWidth="160.0" />
-            <TableView prefHeight="368.0" prefWidth="778.0">
+            <TableView fx:id="table" prefHeight="368.0" prefWidth="778.0">
                <columns>
                   <TableColumn prefWidth="75.0" text="Fak. nr." />
                   <TableColumn prefWidth="48.0" text="Dato" />

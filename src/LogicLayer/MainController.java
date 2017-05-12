@@ -20,5 +20,6 @@ public class MainController extends OpenNewWindow {
 
         table.setItems(createCustomerController.kunder);
 
+
     }
 }
